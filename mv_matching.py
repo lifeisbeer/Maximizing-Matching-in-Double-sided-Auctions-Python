@@ -1,3 +1,31 @@
+from dataclasses import dataclass
+import random
+
+### Helper Functions ###
+
+@dataclass
+class Order:
+    type: str
+    price: int
+    volume: int
+    mes: int = 0
+
+    def __lt__(self, other):
+        # price ascending then volume descenting
+        if self.price == other.price:
+            return self.volume < other.volume
+        else:
+            return self.price > other.price
+
+def create_random_order():
+    type = random.choice(['b', 's'])
+    vol = 1#random.choice(range(1,100))
+    price = random.choice(range(1,100))
+    mes = random.choice(range(vol+1))
+    return Order(type, price, vol)# mes)
+
+### Maximizing Matching Functions ###
+
 def poll(lst):
     if lst:
         return lst.pop(0)
