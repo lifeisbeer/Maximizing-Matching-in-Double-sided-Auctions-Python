@@ -12,13 +12,11 @@ for i in range(client_num):
         asks.append(order)
 # sort by price then volume
 bids.sort()
-"""
 for b in bids:
     print(b)
 asks.sort()
 for a in asks:
     print(a)
-"""
 matching = mv(bids, asks)
 for i in range(len(matching)):
     print(i+1, matching[i])
