@@ -5,24 +5,21 @@ import random
 
 @dataclass
 class Order:
-    type: str
-    price: int
-    volume: int
+    client: bytes = ''
+    type: str = ''
+    asset: str = ''
+    price: int = 0
+    volume: int = 1
     mes: int = 0
 
-    def __lt__(self, other):
-        # price ascending then volume descenting
-        if self.price == other.price:
-            return self.volume < other.volume
-        else:
-            return self.price > other.price
+    def copy(self):
+        return Order(self.client, self.type, self.asset, self.price,
+                     self.volume, self.mes)
 
 def create_random_order():
     type = random.choice(['b', 's'])
-    vol = 1#random.choice(range(1,100))
     price = random.choice(range(1,100))
-    mes = random.choice(range(vol+1))
-    return Order(type, price, vol)# mes)
+    return Order(type = type, price = price)
 
 ### Maximizing Matching Functions ###
 
